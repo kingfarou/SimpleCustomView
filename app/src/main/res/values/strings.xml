@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SimpleCustomView</string>
+    <string name="two_side_progress_bar">两边滚动的进度条</string>
 </resources>

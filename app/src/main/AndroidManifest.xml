@@ -15,6 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".TwoSideProgressBarActivity"
+            android:label="@string/two_side_progress_bar"/>
     </application>
 
 </manifest>

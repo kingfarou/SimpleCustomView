@@ -6,11 +6,15 @@
     android:padding="8dp" android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
-    <com.jf.simplecustomview.TwoSideProgressBar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="点击按钮即可进入不同自定义View展示界面" />
+
+    <Button
+        android:id="@+id/btn_start_two_side_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击打开两边滚动的进度条"/>
 </LinearLayout>

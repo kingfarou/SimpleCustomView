@@ -13,13 +13,13 @@ import android.view.View;
  */
 public class TwoSideProgressBar extends View{
 
-    //左右两边第一个“条”的宽度
+    //左右两边第一个"bar"的宽度，在不断重绘过程中它是不断变化的
     private float firstBarWidth = 0;
-    //其他普通“条”的宽度
+    //其他普通"bar"的宽度
     private float barWidth = 40;
-    //两个条之间的间隔
+    //两个"bar"之间的间隔
     private int barSpace = 20;
-    //当地一个“条”宽度达到普通条的宽度时，第一个“条”到坐标原点的间距
+    //当第一个"bar"宽度达到普通条的宽度时，第一个"bar"到坐标原点的间距
     private float firstBarDistance = barWidth/10;
 
     private Paint barPaint = new Paint();
@@ -43,12 +43,13 @@ public class TwoSideProgressBar extends View{
     protected void onDraw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth();
         //将坐标移到中间
-        canvas.translate(measuredWidth/2, 0);
-        /*绘制时有两类情况，第一个“条”宽度小于普通“条”；第一个“条”宽度达到普通“条”的宽度。
+        canvas.translate(measuredWidth/2, getMeasuredHeight()/2);
+        /*绘制时有两类情况，第一个"bar"宽度小于普通"bar"；第一个"bar"宽度达到普通"bar"的宽度。
         两类情况的绘制逻辑不一样*/
-        //第一个“条”宽度小于普通“条”
+        //第一个"bar"宽度小于普通"bar"
         if(firstBarWidth<=barWidth){
             //绘制右边第一个“条”
+            //index是绘制索引
             int index = 0;
             canvas.drawLine(index, 0, firstBarWidth, 0, barPaint);
             index+=firstBarWidth+barSpace;
@@ -68,6 +69,7 @@ public class TwoSideProgressBar extends View{
             }
             firstBarWidth+=barWidth/10;
         }else{
+            //第一个"bar"宽度达到普通的"bar"宽度时
             //循环绘制右边的“条”
             float index = firstBarDistance;
             while (index <= measuredWidth/2){
@@ -81,7 +83,7 @@ public class TwoSideProgressBar extends View{
                 index-=(barWidth+barSpace);
             }
             firstBarDistance+=barWidth/10;
-            //临界点
+            //到达临界点，全部重置
             if(firstBarDistance > barSpace) {
                 firstBarDistance = barWidth/10;
                 firstBarWidth = barWidth/10;
@@ -92,7 +94,7 @@ public class TwoSideProgressBar extends View{
 
     private int getMeasuredSize(int measureSpec){
         int measuredMode = MeasureSpec.getMode(measureSpec);
-        int measuredSize = 200;
+        int measuredSize = 100;
         if(measuredMode == MeasureSpec.EXACTLY){
             measuredSize = MeasureSpec.getSize(measureSpec);
         }else if(measuredMode == MeasureSpec.AT_MOST){
