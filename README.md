@@ -7,3 +7,4 @@
 
 ## TemperatureProgress
 这是一个圆形的进度条，用来模拟一些天气类App显示温度用的圆形View，当你设置好温度的范围之后，会有一小段动画来显示温度，所以才叫做进度条。
+![圆形温度进度条](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/temperatureProgress.jpg)
