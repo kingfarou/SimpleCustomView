@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context="com.jf.simplecustomview.MainActivity"
+    tools:context=".activity.MainActivity"
     android:padding="8dp" android:orientation="vertical">
 
     <TextView
@@ -12,9 +12,9 @@
         android:textSize="16sp"
         android:text="点击按钮即可进入不同自定义View展示界面" />
 
-    <Button
-        android:id="@+id/btn_start_two_side_progress_bar"
+    <ListView
+        android:id="@+id/lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="点击打开两边滚动的进度条"/>
+        android:layout_height="wrap_content">
+    </ListView>
 </LinearLayout>

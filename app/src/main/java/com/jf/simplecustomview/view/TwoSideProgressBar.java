@@ -1,4 +1,4 @@
-package com.jf.simplecustomview;
+package com.jf.simplecustomview.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,7 +9,7 @@ import android.view.View;
 
 /**
  * Created by JF on 2016/10/9.
- * 两边滚动的进度条
+ * 一个以中间为起点，向左右两边滚动的进度条
  */
 public class TwoSideProgressBar extends View{
 
