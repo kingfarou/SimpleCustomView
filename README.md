@@ -7,4 +7,11 @@
 
 ## TemperatureProgress
 这是一个圆形的进度条，用来模拟一些天气类App显示温度用的圆形View，当你设置好温度的范围之后，会有一小段动画来显示温度，所以才叫做进度条。
+
 ![圆形温度进度条](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/temperatureProgress.jpg)
+
+## MergePictureView
+这是一个仿微信朋友圈合并图片效果的View，如下图所示，第一张图是我做的效果（这是四个MergePictureView，不是一个），第二张是朋友圈的截图
+
+![图片合并View](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/mergePicture.jpg)
+![朋友圈截图](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/pengyouquan.png)
