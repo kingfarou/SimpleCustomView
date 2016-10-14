@@ -14,5 +14,4 @@
 这是一个仿微信朋友圈合并图片效果的View，如下图所示，第一张图是我做的效果（这是四个MergePictureView，不是一个），第二张是朋友圈的截图
 
 ![图片合并View](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/mergePicture.jpg)
-
 ![朋友圈截图](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/pengyouquan.png)
