@@ -27,6 +27,10 @@
         <activity
             android:name=".activity.MergePictureActivity"
             android:label="@string/merge_picture"/>
+
+        <activity
+            android:name=".activity.ClockActivity"
+            android:label="@string/clock"/>
     </application>
 
 </manifest>

@@ -11,17 +11,20 @@ import android.widget.ListView;
 
 import com.jf.simplecustomview.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        List<String> contentList = initData();
         //设置ListView
-        String[] contents = new String[]{"点击打开两边滚动的进度条", "点击打开圆形的进度条", "点击打开合并图片展示页面"};
         ListView listView = (ListView)findViewById(R.id.lv);
         listView.setOnItemClickListener(this);
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contents));
+        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contentList));
     }
 
     @Override
@@ -35,7 +38,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }else if(position == 2){
             //合并图片展示页面
             openActivity(MergePictureActivity.class);
+        }else if(position == 3){
+            openActivity(ClockActivity.class);
         }
+    }
+
+    //初始化ListView的数据
+    private List<String> initData(){
+        List<String> contentList = new ArrayList<>();
+        contentList.add("点击打开两边滚动的进度条");
+        contentList.add("点击打开圆形的进度条");
+        contentList.add("点击打开合并图片展示页面");
+        contentList.add("点击打开时钟界面");
+        return contentList;
     }
 
     private <T extends FragmentActivity> void openActivity(Class<T> activity){

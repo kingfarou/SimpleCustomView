@@ -58,7 +58,7 @@ public class TemperatureProgress extends View{
         arcPaint.setStyle(Paint.Style.STROKE);
         arcPaint.setStrokeWidth(circleWidth);
 
-        //绘制当前温度值得画笔
+        //绘制当前温度值的画笔
         nowTemperaturePaint = new Paint();
         nowTemperaturePaint.setColor(Color.BLACK);
         nowTemperaturePaint.setTextSize(80);
