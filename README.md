@@ -15,3 +15,8 @@
 
 ![图片合并View](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/mergePicture.jpg)
 ![朋友圈截图](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/pengyouquan.png)
+
+## CLockView
+这是一个时钟盘，它可以是静止的也可以是动态的，对外提供方法控制启动/暂停，与很多时钟盘不同的是，这个只有时针分针，“秒”变动效果通过弧线来展示，如下图示静态效果。
+
+![时钟盘](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/clockView.jpg)
