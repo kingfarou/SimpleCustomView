@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 
 /**
  * Created by JF on 2016/10/14.
@@ -25,9 +24,12 @@ public class ClockView extends View{
     private final Paint arcPaint = new Paint();         //画弧线的笔
     private final RectF arcRectF = new RectF();         //画弧线用的矩形
 
-    private int hour = 4;
-    private int minute = 40;
-    private int second = 34;
+    //时、分、毫秒，为了技术方便没有使用秒，而是毫秒，不过对外提供的是秒
+    private int hour = 8;
+    private int minute = 0;
+    private int millisecond = 0;
+    //标记时钟是否是在运行
+    private boolean isRun;
 
     public ClockView(Context context) {
         super(context);
@@ -39,22 +41,28 @@ public class ClockView extends View{
         init();
     }
 
+    //对绘图所用的工具做初始化
     private void init(){
+        //绘制时钟盘的画笔的初始化
         circlePaint.setColor(Color.RED);
         circlePaint.setStrokeWidth(circleWidth);
         circlePaint.setStyle(Paint.Style.STROKE);
 
+        //绘制刻度线画笔的初始化
         linePaint.setColor(Color.BLACK);
         linePaint.setStrokeWidth(4);
 
+        //绘制文字画笔的初始化
         textPaint.setColor(Color.BLACK);
         textPaint.setTextSize(30);
         textPaint.setStyle(Paint.Style.FILL);
         textPaint.setTextAlign(Paint.Align.CENTER);
 
+        //绘制指针画笔的初始化
         pointerPaint.setColor(Color.BLACK);
         pointerPaint.setStrokeWidth(10);
 
+        //绘制弧线画笔的初始化
         arcPaint.setColor(Color.GREEN);
         arcPaint.setStrokeWidth(circleWidth);
         arcPaint.setStyle(Paint.Style.STROKE);
@@ -65,8 +73,10 @@ public class ClockView extends View{
         setMeasuredDimension(getMeasuredSize(widthMeasureSpec), getMeasuredSize(heightMeasureSpec));
     }
 
+    //都是比较常规的测量代码
     private int getMeasuredSize(int measureSpec){
         int measuredMode = MeasureSpec.getMode(measureSpec);
+        //默认大小要稍微大一些
         int measuredSize = 800;
         if(measuredMode == MeasureSpec.EXACTLY){
             measuredSize = MeasureSpec.getSize(measureSpec);
@@ -76,10 +86,10 @@ public class ClockView extends View{
         return measuredSize;
     }
 
+    //这里是核心代码
     @Override
     protected void onDraw(Canvas canvas) {
         int halfMeasuredWidth = getMeasuredWidth()/2;
-//        canvas.drawColor(Color.BLUE);
         canvas.translate(halfMeasuredWidth, getMeasuredHeight()/2);
         //画圆
         float radius = halfMeasuredWidth - paddingSpace - circleWidth/2;
@@ -122,7 +132,60 @@ public class ClockView extends View{
         //用弧线的形式来填充秒数
         float position = halfMeasuredWidth-paddingSpace-circleWidth/2;
         arcRectF.set(-position, -position, position, position);
-        canvas.drawArc(arcRectF, -90, second/60f*360, false, arcPaint);
+        canvas.drawArc(arcRectF, -90, millisecond /60000f*360, false, arcPaint);
         super.onDraw(canvas);
+        //如果时钟需要继续走动
+        if(isRun){
+            calculateTime();
+            postInvalidateDelayed(100);
+        }
+    }
+
+    //在时间变化过程中计算时间用的方法
+    private void calculateTime(){
+        if(millisecond == 60000){
+            millisecond = 0;
+            if(minute == 59){
+                minute = 0;
+                if(hour == 11) hour = 0;
+                else hour++;
+            }else{
+                minute++;
+            }
+        }else{
+            millisecond+=100;
+        }
+    }
+
+    /**
+     * 设置要显示的时间
+     * @param hour 小时（0-11）
+     * @param minute 分钟（0-59）
+     * @param second 秒钟（0-59）
+     */
+    public void setTime(int hour, int minute, int second){
+        //输入有误
+        if(hour<0 || hour>11 || minute<0 || minute>59 || second<0 || second>59){
+            return;
+        }
+        this.hour = hour;
+        this.minute = minute;
+        this.millisecond = second*1000;
+    }
+
+
+    /**
+     * 让时钟开始运行
+     */
+    public void star(){
+        isRun = true;
+        invalidate();
+    }
+
+    /**
+     * 让时钟停止运行
+     */
+    public void paus(){
+        isRun = false;
     }
 }
