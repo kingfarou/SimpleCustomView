@@ -123,7 +123,7 @@ public class ClockView extends View{
         canvas.rotate(pointerDegree);
         canvas.drawLine(0, 40, 0, -radius/3, pointerPaint);
         canvas.restore();
-        //划分针
+        //画分针
         canvas.save();
         pointerDegree = minute/60f*360;
         canvas.rotate(pointerDegree);
@@ -171,8 +171,8 @@ public class ClockView extends View{
         this.hour = hour;
         this.minute = minute;
         this.millisecond = second*1000;
+        invalidate();
     }
-
 
     /**
      * 让时钟开始运行
