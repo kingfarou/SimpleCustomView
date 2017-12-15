@@ -1,4 +1,4 @@
-package com.jf.simplecustomview.activity;
+package com.jf.simplecustomview;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
@@ -9,7 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.jf.simplecustomview.R;
+import com.jf.simplecustomview.clockview.ClockActivity;
+import com.jf.simplecustomview.mergepicture.MergePictureActivity;
+import com.jf.simplecustomview.temperatureprogress.TemperatureProgressActivity;
+import com.jf.simplecustomview.twosideprogressbar.TwoSideProgressBarActivity;
 
 import java.util.ArrayList;
 import java.util.List;

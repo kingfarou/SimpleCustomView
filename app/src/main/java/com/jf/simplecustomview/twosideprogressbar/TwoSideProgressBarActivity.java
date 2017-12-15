@@ -1,4 +1,4 @@
-package com.jf.simplecustomview.activity;
+package com.jf.simplecustomview.twosideprogressbar;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;

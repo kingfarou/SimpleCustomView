@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.jf.simplecustomview.view.TemperatureProgress
+    <com.jf.simplecustomview.temperatureprogress.TemperatureProgress
         android:id="@+id/circle_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

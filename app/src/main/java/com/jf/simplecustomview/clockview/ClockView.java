@@ -1,4 +1,4 @@
-package com.jf.simplecustomview.view;
+package com.jf.simplecustomview.clockview;
 
 import android.content.Context;
 import android.graphics.Canvas;

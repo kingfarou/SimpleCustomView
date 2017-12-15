@@ -1,4 +1,4 @@
-package com.jf.simplecustomview.view;
+package com.jf.simplecustomview.mergepicture;
 
 import android.content.Context;
 import android.graphics.Bitmap;

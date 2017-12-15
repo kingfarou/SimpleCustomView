@@ -1,4 +1,4 @@
-package com.jf.simplecustomview.view;
+package com.jf.simplecustomview.temperatureprogress;
 
 import android.content.Context;
 import android.graphics.Canvas;

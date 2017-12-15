@@ -1,11 +1,10 @@
-package com.jf.simplecustomview.activity;
+package com.jf.simplecustomview.mergepicture;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.jf.simplecustomview.R;
-import com.jf.simplecustomview.view.MergePictureView;
 
 /**
  * Created by JF on 2016/10/12.
