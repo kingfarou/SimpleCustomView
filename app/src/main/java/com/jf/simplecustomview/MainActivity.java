@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.jf.simplecustomview.clockview.ClockActivity;
 import com.jf.simplecustomview.mergepicture.MergePictureActivity;
 import com.jf.simplecustomview.temperatureprogress.TemperatureProgressActivity;
+import com.jf.simplecustomview.tickview.TickViewActivity;
 import com.jf.simplecustomview.twosideprogressbar.TwoSideProgressBarActivity;
 
 import java.util.ArrayList;
@@ -33,26 +34,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(position == 0){
-            //两边滚动的进度条展示页面
             openActivity(TwoSideProgressBarActivity.class);
         }else if(position == 1){
-            //圆形进度条展示页面
             openActivity(TemperatureProgressActivity.class);
         }else if(position == 2){
-            //合并图片展示页面
             openActivity(MergePictureActivity.class);
         }else if(position == 3){
             openActivity(ClockActivity.class);
+        }else if(position == 4){
+            openActivity(TickViewActivity.class);
         }
     }
 
     //初始化ListView的数据
     private List<String> initData(){
         List<String> contentList = new ArrayList<>();
-        contentList.add("点击打开两边滚动的进度条");
-        contentList.add("点击打开圆形的进度条");
-        contentList.add("点击打开合并图片展示页面");
-        contentList.add("点击打开时钟界面");
+        contentList.add("两边滚动的进度条");
+        contentList.add("圆形的进度条");
+        contentList.add("合并图片展示页面");
+        contentList.add("时钟");
+        contentList.add("打钩小动画");
         return contentList;
     }
 

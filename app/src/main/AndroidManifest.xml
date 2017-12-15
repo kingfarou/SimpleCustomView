@@ -15,22 +15,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".twosideprogressbar.TwoSideProgressBarActivity"
-            android:label="@string/two_side_progress_bar"/>
-
+            android:label="@string/two_side_progress_bar" />
         <activity
             android:name=".temperatureprogress.TemperatureProgressActivity"
-            android:label="@string/circle_progress"/>
-
+            android:label="@string/circle_progress" />
         <activity
             android:name=".mergepicture.MergePictureActivity"
-            android:label="@string/merge_picture"/>
-
+            android:label="@string/merge_picture" />
         <activity
             android:name=".clockview.ClockActivity"
-            android:label="@string/clock"/>
+            android:label="@string/clock" />
+        <activity android:name=".tickview.TickViewActivity"></activity>
     </application>
 
 </manifest>
