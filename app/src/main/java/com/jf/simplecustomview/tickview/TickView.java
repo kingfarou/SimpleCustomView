@@ -78,11 +78,11 @@ public class TickView extends View{
         narrowRadiusCounter = maxExpandRadius;
 
         // 初始化小勾路径
-        int halfRadius = radius/3;
+        int oneThirdOfTheRadius = radius/3;
         tickPath = new Path();
-        tickPath.moveTo(-halfRadius, 0);
-        tickPath.lineTo(0, halfRadius);
-        tickPath.lineTo(halfRadius, -halfRadius);
+        tickPath.moveTo(-oneThirdOfTheRadius, 0);
+        tickPath.lineTo(0, oneThirdOfTheRadius);
+        tickPath.lineTo(oneThirdOfTheRadius, -oneThirdOfTheRadius);
     }
 
     @Override
@@ -165,7 +165,7 @@ public class TickView extends View{
         // 彩色圆缩回变大前效果（动态）还没画完
         if(narrowRadiusCounter >= radius){
             canvas.restore();
-//            postInvalidateDelayed(20);
+            // 重绘，也可以改成调用postInvalidateDelayed()方法控制动画速度
             invalidate();
         }
     }

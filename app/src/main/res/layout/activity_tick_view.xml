@@ -4,6 +4,7 @@
     android:id="@+id/activity_tick_view"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context="com.jf.simplecustomview.tickview.TickViewActivity">
 
     <com.jf.simplecustomview.tickview.TickView
@@ -15,5 +16,5 @@
         android:id="@+id/btn_change_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="点我选中/反选"/>
+        android:text="点击选中"/>
 </LinearLayout>
