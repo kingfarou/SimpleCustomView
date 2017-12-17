@@ -167,6 +167,10 @@ public class TickView extends View{
             canvas.restore();
             // 重绘，也可以改成调用postInvalidateDelayed()方法控制动画速度
             invalidate();
+        } else {
+            // 动态效果绘制结束立刻重置变量
+            // 避免窗口在onStop()-->onReStar()之后导致该View绘制异常
+            reset();
         }
     }
 
