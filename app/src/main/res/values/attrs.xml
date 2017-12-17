@@ -4,9 +4,9 @@
     <!--打钩小动画的属性-->
     <declare-styleable name="TickView">
         <!--选中时圆的颜色-->
-        <attr name="selected_color" format="color"/>
+        <attr name="checked_color" format="color"/>
         <!--是否选中-->
-        <attr name="selected" format="boolean"/>
+        <attr name="checked" format="boolean"/>
         <!--圆半径-->
         <attr name="radius" format="dimension"/>
     </declare-styleable>

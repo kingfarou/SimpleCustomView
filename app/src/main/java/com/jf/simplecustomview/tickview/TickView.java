@@ -22,16 +22,16 @@ public class TickView extends View{
     private static final int START_ANGLES = 90;       // 弧线起始角度
     private static final int DEFAULT_RADIUS = 200;    // 选中/未选中时圆的默认半径
     // 选中状态画笔默认颜色
-    private static final int DEFAULT_SELECTED_COLOR = Color.parseColor("#008AFF");
+    private static final int DEFAULT_CHECKED_COLOR = Color.parseColor("#008AFF");
     // 未选中状态画笔颜色
-    private static final int UNSELECTED_COLOR = Color.parseColor("#F2F2F2");
+    private static final int UN_CHECKED_COLOR = Color.parseColor("#F2F2F2");
 
     private int halfWidth;       // 尺寸半款
     private int halfHeight;      // 尺寸半高
 
-    private Paint selectedPaint;      // 选中状态画笔
+    private Paint checkedPaint;       // 选中状态画笔
     private Paint whitePaint;         // 选中状态白色画笔
-    private Paint unSelectedPaint;    // 未选中状态画笔
+    private Paint unCheckedPaint;     // 未选中状态画笔
     private Path tickPath;            // 绘制小勾的路径
 
     private int radius;                        // 选中/未选中时圆的半径
@@ -50,25 +50,25 @@ public class TickView extends View{
     public TickView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 创建画笔
-        selectedPaint = new Paint();
+        checkedPaint = new Paint();
         whitePaint = new Paint();
-        unSelectedPaint = new Paint();
+        unCheckedPaint = new Paint();
 
         // 获取xml属性
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TickView);
-        selectedPaint.setColor(typedArray.getColor(R.styleable.TickView_selected_color, DEFAULT_SELECTED_COLOR));
-        isCheck = typedArray.getBoolean(R.styleable.TickView_selected, false);
+        checkedPaint.setColor(typedArray.getColor(R.styleable.TickView_checked_color, DEFAULT_CHECKED_COLOR));
+        isCheck = typedArray.getBoolean(R.styleable.TickView_checked, false);
         radius = (int)typedArray.getDimension(R.styleable.TickView_radius, DEFAULT_RADIUS);
         typedArray.recycle();
 
         // 初始化画笔
-        selectedPaint.setStyle(Paint.Style.STROKE);
-        selectedPaint.setStrokeWidth(20);
+        checkedPaint.setStyle(Paint.Style.STROKE);
+        checkedPaint.setStrokeWidth(20);
         whitePaint.setColor(Color.WHITE);
         whitePaint.setStrokeWidth(20);
-        unSelectedPaint.setStrokeWidth(20);
-        unSelectedPaint.setColor(UNSELECTED_COLOR);
-        unSelectedPaint.setStyle(Paint.Style.STROKE);
+        unCheckedPaint.setStrokeWidth(20);
+        unCheckedPaint.setColor(UN_CHECKED_COLOR);
+        unCheckedPaint.setStyle(Paint.Style.STROKE);
 
         // 初始化半径参数
         whiteRadiusCounter = radius;
@@ -125,13 +125,13 @@ public class TickView extends View{
         if(sweepAnglesCounter < MAX_SWEEP_ANGLES){
             sweepAnglesCounter += 12;
         }
-        canvas.drawArc(-radius, -radius, radius, radius, START_ANGLES, sweepAnglesCounter, false, selectedPaint);
+        canvas.drawArc(-radius, -radius, radius, radius, START_ANGLES, sweepAnglesCounter, false, checkedPaint);
 
         // 动态圆弧已画完
         if(sweepAnglesCounter == MAX_SWEEP_ANGLES){
             // 画彩色圆（静态）
-            selectedPaint.setStyle(Paint.Style.FILL);
-            canvas.drawCircle(0, 0, radius, selectedPaint);
+            checkedPaint.setStyle(Paint.Style.FILL);
+            canvas.drawCircle(0, 0, radius, checkedPaint);
 
             // 画白色逐渐变小的圆（动态）
             if(whiteRadiusCounter >= 20){
@@ -147,7 +147,7 @@ public class TickView extends View{
             whitePaint.setStyle(Paint.Style.STROKE);
             if(expandRadiusCounter < maxExpandRadius){
                 expandRadiusCounter += 20;
-                canvas.drawCircle(0, 0, expandRadiusCounter, selectedPaint);
+                canvas.drawCircle(0, 0, expandRadiusCounter, checkedPaint);
                 canvas.drawPath(tickPath, whitePaint);// 画小勾
             }
         }
@@ -157,7 +157,7 @@ public class TickView extends View{
             // 画“小勾”（静态）同时画彩色圆缩回变大前效果（动态）
             if(narrowRadiusCounter >= radius) {
                 narrowRadiusCounter -= 20;
-                canvas.drawCircle(0, 0, narrowRadiusCounter, selectedPaint);
+                canvas.drawCircle(0, 0, narrowRadiusCounter, checkedPaint);
                 canvas.drawPath(tickPath, whitePaint);// 画小勾
             }
         }
@@ -179,8 +179,8 @@ public class TickView extends View{
         canvas.save();
         canvas.translate(halfWidth, halfHeight);
         // 绘制一个灰色的圆圈、小勾
-        canvas.drawCircle(0, 0, radius, unSelectedPaint);
-        canvas.drawPath(tickPath, unSelectedPaint);
+        canvas.drawCircle(0, 0, radius, unCheckedPaint);
+        canvas.drawPath(tickPath, unCheckedPaint);
         canvas.restore();
     }
 
@@ -196,7 +196,7 @@ public class TickView extends View{
 
     // 重置所有参数的状态
     private void reset(){
-        selectedPaint.setStyle(Paint.Style.STROKE);
+        checkedPaint.setStyle(Paint.Style.STROKE);
 
         whiteRadiusCounter = radius;
         sweepAnglesCounter = 0;
