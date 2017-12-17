@@ -162,9 +162,9 @@ public class TickView extends View{
             }
         }
 
+        canvas.restore(); // 恢复坐标系
         // 彩色圆缩回变大前效果（动态）还没画完
         if(narrowRadiusCounter >= radius){
-            canvas.restore();
             // 重绘，也可以改成调用postInvalidateDelayed()方法控制动画速度
             invalidate();
         } else {
