@@ -29,7 +29,6 @@
 
 点击查看设计思路：[Android自定义View分享——一个时钟](http://blog.csdn.net/u010707039/article/details/52901101)
 
-![时钟盘](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/clockView.jpg)
 
 ## TickView
 一个打钩小动画，具有“选中”/“未选中”两个状态，选中状态具有动画效果，未选中状态是静态的。如图所示：
