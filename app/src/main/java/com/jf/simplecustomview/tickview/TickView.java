@@ -94,10 +94,16 @@ public class TickView extends View{
     private int getMeasureSize(int measureSpec){
         int modeSpec = MeasureSpec.getMode(measureSpec);
         int sizeSpec = MeasureSpec.getSize(measureSpec);
+        int result;
         if(modeSpec == MeasureSpec.EXACTLY){
-            return sizeSpec;
+            result = sizeSpec;
+        } else {
+            result = maxExpandRadius<<1;
+            if(modeSpec == MeasureSpec.AT_MOST){
+                result = Math.min(sizeSpec, result);
+            }
         }
-        return maxExpandRadius<<1;
+        return result;
     }
 
     @Override
