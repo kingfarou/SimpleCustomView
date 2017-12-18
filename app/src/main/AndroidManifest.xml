@@ -27,7 +27,9 @@
         <activity
             android:name=".clockview.ClockActivity"
             android:label="@string/clock" />
-        <activity android:name=".tickview.TickViewActivity"></activity>
+        <activity
+            android:name=".tickview.TickViewActivity"
+            android:label="@string/tick_view"/>
     </application>
 
 </manifest>
