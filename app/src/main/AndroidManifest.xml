@@ -29,7 +29,8 @@
             android:label="@string/clock" />
         <activity
             android:name=".tickview.TickViewActivity"
-            android:label="@string/tick_view"/>
+            android:label="@string/tick_view" />
+        <activity android:name=".gramophone.GramophoneActivity"></activity>
     </application>
 
 </manifest>

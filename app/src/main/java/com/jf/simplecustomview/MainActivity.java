@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.jf.simplecustomview.clockview.ClockActivity;
+import com.jf.simplecustomview.gramophone.GramophoneActivity;
 import com.jf.simplecustomview.mergepicture.MergePictureActivity;
 import com.jf.simplecustomview.temperatureprogress.TemperatureProgressActivity;
 import com.jf.simplecustomview.tickview.TickViewActivity;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             openActivity(ClockActivity.class);
         }else if(position == 4){
             openActivity(TickViewActivity.class);
+        }else if(position == 5){
+            openActivity(GramophoneActivity.class);
         }
     }
 
@@ -54,10 +57,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         contentList.add("合并图片展示页面");
         contentList.add("时钟");
         contentList.add("打钩小动画");
+        contentList.add("仿网易云音乐留声机效果");
         return contentList;
     }
 
     private <T extends FragmentActivity> void openActivity(Class<T> activity){
         startActivity(new Intent(this, activity));
     }
+
 }
