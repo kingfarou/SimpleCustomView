@@ -26,6 +26,11 @@
 ![时钟盘](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/ClockView.gif)
 
 ## TickView
-一个打钩小动画，具有“选中”/“未选中”两个状态，选中状态具有动画效果，未选中状态是静态的。如图所示：
+一个打钩小动画，具有“选中”/“未选中”两个状态，选中状态具有动画效果，未选中状态是静态的。点击查看设计思路：[Android自定义View分享——打钩动画](http://blog.csdn.net/u010707039/article/details/78823584)。如下所示是效果图：
 
 ![打钩小动画](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/TickView.gif)
+
+## GramophoneView
+仿网易云音乐唱片机效果，具有“播放”/“暂停”两个状态。如图所示：
+
+![打钩小动画](https://raw.githubusercontent.com/JaffarOu/SimpleCustomView/master/PictureInReadMe/GramophoneView.gif)
