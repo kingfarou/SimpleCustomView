@@ -117,26 +117,28 @@ public class GramophoneView extends View {
      * @param dst 目标矩形
      */
     private void setBitmapRect(Rect src, Rect dst){
-        int bitmapWidth = bitmap.getWidth();
-        int bitmapHeight = bitmap.getHeight();
-        // 唱片里的图片直径，也就是唱片里的图片的外接正方形边长
-        int diameter = pictureRadius<<1;
-        // 图片宽度小于唱片图片直径
-        if(bitmapWidth <= diameter){
-            src.left = 0;
-            src.right = bitmapWidth;
-        } else {
-            src.left = (bitmap.getWidth()-diameter)/2;
-            src.right = bitmap.getWidth()/2+diameter;
-        }
-        // 图片高度小于唱片图片直径
-        if(bitmapHeight <= diameter){
-            src.top = 0;
-            src.bottom = bitmapHeight;
-        } else {
-            src.top = (bitmap.getHeight()-diameter)/2;
-            src.bottom = bitmap.getHeight()/2+diameter;
-        }
+//        这种处理方式意义好像不大，暂时注释
+//        int bitmapWidth = bitmap.getWidth();
+//        int bitmapHeight = bitmap.getHeight();
+//        // 唱片里的图片直径，也就是唱片里的图片的外接正方形边长
+//        int diameter = pictureRadius<<1;
+//        // 图片宽度小于唱片图片直径
+//        if(bitmapWidth <= diameter){
+//            src.left = 0;
+//            src.right = bitmapWidth;
+//        } else {
+//            src.left = (bitmap.getWidth()-diameter)/2;
+//            src.right = bitmap.getWidth()/2+diameter;
+//        }
+//        // 图片高度小于唱片图片直径
+//        if(bitmapHeight <= diameter){
+//            src.top = 0;
+//            src.bottom = bitmapHeight;
+//        } else {
+//            src.top = (bitmap.getHeight()-diameter)/2;
+//            src.bottom = bitmap.getHeight()/2+diameter;
+//        }
+        src.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
         dst.set(-pictureRadius, -pictureRadius, pictureRadius, pictureRadius);
     }
 
