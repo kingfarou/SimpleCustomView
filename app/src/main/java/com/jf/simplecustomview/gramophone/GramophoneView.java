@@ -118,38 +118,43 @@ public class GramophoneView extends View {
          * 宽度：等于唱片直径，即图片半径+圆环宽度求和再乘以2。
          * 高度：等于唱片直径+唱针较长的手臂
          */
-        setMeasuredDimension(getWidthDimension(widthMeasureSpec), getHeightDimension(heightMeasureSpec));
+        int width = (pictureRadius+ringWidth)*2;;
+        int height = (pictureRadius+ringWidth)*2+longArmLength;
+        int measuredWidth = resolveSize(width, widthMeasureSpec);
+        int measuredHeight = resolveSize(height, heightMeasureSpec);
+        setMeasuredDimension(measuredWidth, measuredHeight);
+//        setMeasuredDimension(getWidthDimension(widthMeasureSpec), getHeightDimension(heightMeasureSpec));
     }
 
-    private int getWidthDimension(int widthMeasureSpec){
-        int modeSpec = MeasureSpec.getMode(widthMeasureSpec);
-        int sizeSpec = MeasureSpec.getSize(widthMeasureSpec);
-        int result;
-        if(modeSpec == MeasureSpec.EXACTLY){
-            result = sizeSpec;
-        } else {
-            result = (pictureRadius+ringWidth)*2;
-            if(modeSpec == MeasureSpec.AT_MOST){
-                result = Math.min(result, sizeSpec);
-            }
-        }
-        return result;
-    }
+//    private int getWidthDimension(int widthMeasureSpec){
+//        int modeSpec = MeasureSpec.getMode(widthMeasureSpec);
+//        int sizeSpec = MeasureSpec.getSize(widthMeasureSpec);
+//        int result;
+//        if(modeSpec == MeasureSpec.EXACTLY){
+//            result = sizeSpec;
+//        } else {
+//            result = (pictureRadius+ringWidth)*2;
+//            if(modeSpec == MeasureSpec.AT_MOST){
+//                result = Math.min(result, sizeSpec);
+//            }
+//        }
+//        return result;
+//    }
 
-    private int getHeightDimension(int heightMeasureSpec){
-        int modeSpec = MeasureSpec.getMode(heightMeasureSpec);
-        int sizeSpec = MeasureSpec.getSize(heightMeasureSpec);
-        int result;
-        if(modeSpec == MeasureSpec.EXACTLY){
-            result = sizeSpec;
-        } else {
-            result = (pictureRadius+ringWidth)*2+longArmLength;
-            if(modeSpec == MeasureSpec.AT_MOST){
-                result = Math.min(result, sizeSpec);
-            }
-        }
-        return result;
-    }
+//    private int getHeightDimension(int heightMeasureSpec){
+//        int modeSpec = MeasureSpec.getMode(heightMeasureSpec);
+//        int sizeSpec = MeasureSpec.getSize(heightMeasureSpec);
+//        int result;
+//        if(modeSpec == MeasureSpec.EXACTLY){
+//            result = sizeSpec;
+//        } else {
+//            result = (pictureRadius+ringWidth)*2+longArmLength;
+//            if(modeSpec == MeasureSpec.AT_MOST){
+//                result = Math.min(result, sizeSpec);
+//            }
+//        }
+//        return result;
+//    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -288,5 +293,6 @@ public class GramophoneView extends View {
      */
     public void setPictureRes(int resId){
         bitmap = BitmapFactory.decodeResource(getContext().getResources(), resId);
+        invalidate();
     }
 }
