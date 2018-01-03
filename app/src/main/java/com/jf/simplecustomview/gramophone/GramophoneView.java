@@ -91,11 +91,7 @@ public class GramophoneView extends View {
         discPaint.setStrokeWidth(ringWidth);
         srcRect = new Rect();
         dstRect = new Rect();
-        // 图片宽高都至少要大于pictureRadius，否则有可能报错
-        // 在图片宽高均大于pictureRadius的前提下，drawBitmap时截取图片中央边长为pictureRadius的矩形区域
-        srcRect.set( (bitmap.getWidth()-pictureRadius*2)/2, (bitmap.getHeight()-pictureRadius*2)/2,
-                bitmap.getWidth()/2+pictureRadius*2, bitmap.getHeight()/2+pictureRadius*2);
-        dstRect.set(-pictureRadius, -pictureRadius, pictureRadius, pictureRadius);
+        setBitmapRect(srcRect, dstRect);
         clipPath = new Path();
         clipPath.addCircle(0, 0, pictureRadius, Path.Direction.CW);
         diskDegreeCounter = 0;
@@ -110,6 +106,40 @@ public class GramophoneView extends View {
         needleDegreeCounter = PAUSE_DEGREE;
     }
 
+    /**
+     * 根据加载的图片资源尺寸和设置的唱片中间图片直径，
+     * 为canvas.drawBitmap()方法设置源Rect和目标Rect，
+     * 以宽度为例，假设图片资源宽度为width，唱片中间图片直径为diameter
+     * 如果width <= diameter，则截取宽度为整张图片宽度。
+     * 如果width > diameter，则截取宽度为图片资源横向中间长度为diameter的区域。
+     * 高度的截取方法与宽度相同。
+     * @param src 源矩形
+     * @param dst 目标矩形
+     */
+    private void setBitmapRect(Rect src, Rect dst){
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+        // 唱片里的图片直径，也就是唱片里的图片的外接正方形边长
+        int diameter = pictureRadius<<1;
+        // 图片宽度小于唱片图片直径
+        if(bitmapWidth <= diameter){
+            src.left = 0;
+            src.right = bitmapWidth;
+        } else {
+            src.left = (bitmap.getWidth()-diameter)/2;
+            src.right = bitmap.getWidth()/2+diameter;
+        }
+        // 图片高度小于唱片图片直径
+        if(bitmapHeight <= diameter){
+            src.top = 0;
+            src.bottom = bitmapHeight;
+        } else {
+            src.top = (bitmap.getHeight()-diameter)/2;
+            src.bottom = bitmap.getHeight()/2+diameter;
+        }
+        dst.set(-pictureRadius, -pictureRadius, pictureRadius, pictureRadius);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -118,43 +148,12 @@ public class GramophoneView extends View {
          * 宽度：等于唱片直径，即图片半径+圆环宽度求和再乘以2。
          * 高度：等于唱片直径+唱针较长的手臂
          */
-        int width = (pictureRadius+ringWidth)*2;;
+        int width = (pictureRadius+ringWidth)*2;
         int height = (pictureRadius+ringWidth)*2+longArmLength;
         int measuredWidth = resolveSize(width, widthMeasureSpec);
         int measuredHeight = resolveSize(height, heightMeasureSpec);
         setMeasuredDimension(measuredWidth, measuredHeight);
-//        setMeasuredDimension(getWidthDimension(widthMeasureSpec), getHeightDimension(heightMeasureSpec));
     }
-
-//    private int getWidthDimension(int widthMeasureSpec){
-//        int modeSpec = MeasureSpec.getMode(widthMeasureSpec);
-//        int sizeSpec = MeasureSpec.getSize(widthMeasureSpec);
-//        int result;
-//        if(modeSpec == MeasureSpec.EXACTLY){
-//            result = sizeSpec;
-//        } else {
-//            result = (pictureRadius+ringWidth)*2;
-//            if(modeSpec == MeasureSpec.AT_MOST){
-//                result = Math.min(result, sizeSpec);
-//            }
-//        }
-//        return result;
-//    }
-
-//    private int getHeightDimension(int heightMeasureSpec){
-//        int modeSpec = MeasureSpec.getMode(heightMeasureSpec);
-//        int sizeSpec = MeasureSpec.getSize(heightMeasureSpec);
-//        int result;
-//        if(modeSpec == MeasureSpec.EXACTLY){
-//            result = sizeSpec;
-//        } else {
-//            result = (pictureRadius+ringWidth)*2+longArmLength;
-//            if(modeSpec == MeasureSpec.AT_MOST){
-//                result = Math.min(result, sizeSpec);
-//            }
-//        }
-//        return result;
-//    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -293,6 +292,7 @@ public class GramophoneView extends View {
      */
     public void setPictureRes(int resId){
         bitmap = BitmapFactory.decodeResource(getContext().getResources(), resId);
+        setBitmapRect(srcRect, dstRect);
         invalidate();
     }
 }
